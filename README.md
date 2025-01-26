@@ -4,6 +4,8 @@ This is the Cyberbro Chrome Extension. You can find the project on [GitHub](http
 
 In order to use this extension, you must have a Cyberbro instance running (e.g. http://127.0.0.1:5000).
 
+![image](https://github.com/user-attachments/assets/976b52d0-a164-49d4-89e4-70ce039743be)
+
 ![cyberbro_chrome_ext](https://github.com/user-attachments/assets/38f45c39-1c62-4d65-9710-7ffee52586a1)
 
 > [!TIP]
