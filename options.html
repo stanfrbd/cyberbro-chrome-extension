@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .radio-container {
+        background: #fff;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        display: inline-block;
+        padding: 5px;
+        font-size: 0.875rem;
+        color: #343a40;
+        }
+
+        .radio-container label {
+        border: 1px solid transparent;
+        border-radius: 5px;
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        transition: .2s all ease-in-out;
+        width: 100px;
+        }
+
+        .radio-container input[type="radio"] {
+        display: none;
+        }
+
+        .radio-container label:hover {
+        background: #0056b3;
+        color: white;
+        }
+
+        .radio-container input[type="radio"]:checked+label:hover {
+        background: #0056b3;
+        color: white;
+        }
+
+        .radio-container input[type="radio"]:checked+label {
+        background: #007bff;
+        color: white;
+        }
+
+        fieldset {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+        }
+
+        fieldset legend {
+        font-size: 1.2rem;
+        font-weight: bold;
+        }
+
+        #engine-options div {
+        margin: 5px 0;
+        }
+
+        #engine-options label {
+        margin-left: 5px;
+        }
+    </style>
+    <title>Cyberbro Options</title>
+</head>
+<body>
+    <h1>Cyberbro Options</h1>
+    <p>Tip: Hover the engines with your mouse to see what they do.</p>
+    <form id="options-form">
+        <label>
+            Cyberbro URL:
+            <input type="url" id="cyberbro-url" placeholder="https://cyberbro.stan.local" required />
+        </label>
+        <fieldset>
+            <legend>Engines:</legend>
+            <div class="radio-container">
+            <input type="radio" id="selectAll" name="engineSelection">
+            <label title="Can be long" for="selectAll">All</label>
+            <input type="radio" id="selectAbuseChecker" name="engineSelection">
+            <label title="Abuse mail, only IP, domain, URL - All free, no key" for="selectAbuseChecker">Abuse</label>
+            <input type="radio" id="selectHash" name="engineSelection">
+            <label for="selectHash">Hash</label>
+            <input type="radio" id="selectVpn" name="engineSelection">
+            <label title="Only IP" for="selectVpn">VPN / Proxy</label>
+            <input type="radio" id="selectFree" name="engineSelection">
+            <label title="All free engines, no key" for="selectFree">Free</label>
+            <input type="radio" id="selectExtension" name="engineSelection">
+            <label title="Only Chrome extension" for="selectExtension">Extension</label>
+            <input type="radio" id="selectDefault" name="engineSelection" checked>
+            <label title="Good for IP / domain / URL basic info" for="selectDefault">Default</label>
+            </div>
+            <div id="engine-options">
+            <div>
+                <input type="checkbox" id="reverse_dns" value="reverse_dns" data-supports="default domain ip abuse free_no_key" checked>
+                <label for="reverse_dns" title="Performs a reverse DNS lookup for IP, domain, URL (on your machine)">Reverse DNS</label>
+            </div>
+            <div>
+                <input type="checkbox" id="rdap" value="rdap" data-supports="default abuse domain free_no_key" checked>
+                <label for="rdap" title="Checks RDAP (ex Whois) record for domain, URL, no API key required">RDAP (ex Whois)</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ipquery" value="ipquery" data-supports="default ip risk vpn proxy free_no_key" checked>
+                <label for="ipquery" title="Checks IPquery for IP, reversed obtained IP for a given domain / URL, free, no API key">IPquery</label>
+            </div>
+            <div>
+                <input type="checkbox" id="abuseipdb" value="abuseipdb" data-supports="risk">
+                <label for="abuseipdb" title="Checks AbuseIPDB for IP, reversed obtained IP for a given domain / URL, free API key required">AbuseIPDB</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ipinfo" value="ipinfo" data-supports="ip">
+                <label for="ipinfo" title="Checks IPinfo for IP, reversed obtained IP for a given domain / URL, free API key required">IPinfo</label>
+            </div>
+            <div>
+                <input type="checkbox" id="virustotal" value="virustotal" data-supports="hash risk ip domain url">
+                <label for="virustotal" title="Checks VirusTotal for IP, domain, URL, hash, free API key required">VirusTotal</label>
+            </div>
+            <div>
+                <input type="checkbox" id="spur" value="spur" data-supports="vpn proxy free_no_key scraping">
+                <label for="spur" title="Scraps Spur.us for IP, reversed obtained IP for a given domain / URL, free, no API key">Spur.us</label>
+            </div>
+            <div>
+                <input type="checkbox" id="mde" value="mde" data-supports="hash ip domain url">
+                <label for="mde" title="Checks Microsoft Defender for Endpoint, paid API info on Azure required">Microsoft Defender for Endpoint</label>
+            </div>
+            <div>
+                <input type="checkbox" id="google_safe_browsing" value="google_safe_browsing" data-supports="risk domain ip">
+                <label for="google_safe_browsing" title="Checks Google Safe Browsing, free API key required">Google Safe Browsing</label>
+            </div>
+            <div>
+                <input type="checkbox" id="shodan" value="shodan" data-supports="ports ip">
+                <label for="shodan" title="Checks Shodan, reversed obtained IP for a given domain / URL, free API key required">Shodan</label>
+            </div>
+            <div>
+                <input type="checkbox" id="phishtank" value="phishtank" data-supports="risk domain url free_no_key">
+                <label for="phishtank" title="Checks Phishtank for domains, URL, free, no API key">Phishtank</label>
+            </div>
+            <div>
+                <input type="checkbox" id="threatfox" value="threatfox" data-supports="ip domain url free_no_key">
+                <label for="threatfox" title="Checks ThreatFox by Abuse.ch for IP, domains, URL, free, no API key">ThreatFox</label>
+            </div>
+            <div>
+                <input type="checkbox" id="urlscan" value="urlscan" data-supports="domain url ip hash free_no_key">
+                <label for="urlscan" title="Checks URLscan for for IP, domains, URL, hash, free, no API key">URLscan</label>
+            </div>
+            <div>
+                <input type="checkbox" id="google" value="google" data-supports="domain url ip hash extension free_no_key scraping">
+                <label for="google" title="Scraps Google search results for all types of observable, free, no API key">Google</label>
+            </div>
+            <div>
+                <input type="checkbox" id="github" value="github" data-supports="domain url ip hash extension free_no_key scraping">
+                <label for="github" title="Get Github grep.app API search results for all types of observable, free, no API key">Github</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ioc_one_html" value="ioc_one_html" data-supports="domain url ip hash extension scraping">
+                <label for="ioc_one_html" title="Scraps (can be long) Ioc.One HTML search results for all types of observable, free, no API key">Ioc.One (HTML)</label>
+            </div>
+            <div>
+                <input type="checkbox" id="ioc_one_pdf" value="ioc_one_pdf" data-supports="domain url ip hash extension scraping">
+                <label for="ioc_one_pdf" title="Scraps (can be long) Ioc.One PDF search results for all types of observable, free, no API key">Ioc.One (PDF)</label>
+            </div>
+            <div>
+                <input type="checkbox" id="opencti" value="opencti" data-supports="domain url ip hash extension">
+                <label for="opencti" title="Searches OpenCTI results for all types of observable, API key required">OpenCTI</label>
+            </div>
+            <div>
+                <input type="checkbox" id="abusix" value="abusix" data-supports="abuse free_no_key">
+                <label for="abusix" title="Checks abuse contact with Abusix only for IP, reversed obtained IP for a given domain / URL, free, no API key">Abusix</label>
+            </div>
+        </fieldset>
+        <button type="submit">Save</button>
+    </form>
+    <p id="status"></p>
+    <script src="options.js"></script>
+</body>
+</html>
