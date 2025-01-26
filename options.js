@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const urlInput = document.getElementById("cyberbro-url");
+    const apiPrefixInput = document.getElementById("api-prefix");
     const form = document.getElementById("options-form");
     const status = document.getElementById("status");
 
     // Load existing options
-    chrome.storage.sync.get(["cyberbroUrl", "selectedEngines"], (data) => {
+    chrome.storage.sync.get(["cyberbroUrl", "apiPrefix", "selectedEngines"], (data) => {
         if (data.cyberbroUrl) urlInput.value = data.cyberbroUrl;
+        if (data.apiPrefix) apiPrefixInput.value = data.apiPrefix;
 
         if (data.selectedEngines) {
             data.selectedEngines.forEach((engine) => {
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ).map((checkbox) => checkbox.value);
 
         chrome.storage.sync.set(
-            { cyberbroUrl: urlInput.value, selectedEngines },
+            { cyberbroUrl: urlInput.value, apiPrefix: apiPrefixInput.value, selectedEngines },
             () => {
                 status.textContent = "Options saved.";
                 setTimeout(() => (status.textContent = ""), 3000);

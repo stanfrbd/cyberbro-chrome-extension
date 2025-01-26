@@ -14,11 +14,13 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
         const selectedText = info.selectionText;
         console.log("Selected text:", selectedText);
 
-        // Retrieve settings (Cyberbro URL and selected engines)
-        chrome.storage.sync.get(["cyberbroUrl", "selectedEngines"], async (data) => {
+        // Retrieve settings (Cyberbro URL, API prefix, and selected engines)
+        chrome.storage.sync.get(["cyberbroUrl", "apiPrefix", "selectedEngines"], async (data) => {
             const cyberbroUrl = data.cyberbroUrl || "https://127.0.0.1:5000";
+            const apiPrefix = data.apiPrefix || "/api";
             const engines = data.selectedEngines || [];
             console.log("Cyberbro URL:", cyberbroUrl);
+            console.log("API Prefix:", apiPrefix);
             console.log("Selected engines:", engines);
 
             if (!engines.length) {
@@ -29,7 +31,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
             try {
                 // Send the selected content for analysis
                 console.log("Sending selected text for analysis");
-                const response = await fetch(`${cyberbroUrl}/api/analyze`, {
+                const response = await fetch(`${cyberbroUrl}${apiPrefix}/analyze`, {
                     method: "POST",
                     headers: { 
                         "Content-Type": "application/json",
@@ -60,25 +62,31 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
                 // Show a simple toast notification while analysis is in progress
                 chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                     if (tabs.length > 0) {
-                        const tabId = tabs[0].id;
-                        chrome.scripting.executeScript({
-                            target: { tabId: tabId },
-                            func: () => {
-                                var toast = document.createElement('div');
-                                toast.innerText = 'Cyberbro is analyzing the selected text...';
-                                toast.style.position = 'fixed';
-                                toast.style.bottom = '20px';
-                                toast.style.left = '50%';
-                                toast.style.transform = 'translateX(-50%)';
-                                toast.style.backgroundColor = 'black';
-                                toast.style.color = 'white';
-                                toast.style.padding = '10px';
-                                toast.style.borderRadius = '5px';
-                                toast.style.zIndex = '10000';
-                                document.body.appendChild(toast);
-                                setTimeout(() => toast.remove(), 3000);
-                            }
-                        });
+                        const tab = tabs[0];
+                        const tabId = tab.id;
+                        const url = tab.url;
+                        if (url && !url.startsWith('chrome://') && !url.startsWith('edge://')) {
+                            chrome.scripting.executeScript({
+                                target: { tabId: tabId },
+                                func: () => {
+                                    var toast = document.createElement('div');
+                                    toast.innerText = 'Cyberbro is analyzing the selected text...';
+                                    toast.style.position = 'fixed';
+                                    toast.style.bottom = '20px';
+                                    toast.style.left = '50%';
+                                    toast.style.transform = 'translateX(-50%)';
+                                    toast.style.backgroundColor = 'black';
+                                    toast.style.color = 'white';
+                                    toast.style.padding = '10px';
+                                    toast.style.borderRadius = '5px';
+                                    toast.style.zIndex = '10000';
+                                    document.body.appendChild(toast);
+                                    setTimeout(() => toast.remove(), 3000);
+                                }
+                            });
+                        } else {
+                            console.error("Cannot execute script on chrome:// or edge:// URLs");
+                        }
                     } else {
                         console.error("No active tab found");
                     }
@@ -87,7 +95,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
                 // Check if the analysis is complete
                 const checkStatus = async () => {
                     console.log("Checking analysis status for ID:", analysis_id);
-                    const statusResponse = await fetch(`${cyberbroUrl}/api/is_analysis_complete/${analysis_id}`, {
+                    const statusResponse = await fetch(`${cyberbroUrl}${apiPrefix}/is_analysis_complete/${analysis_id}`, {
                         method: "GET",
                         headers: {
                             "Access-Control-Allow-Origin": "*" // Added CORS header
