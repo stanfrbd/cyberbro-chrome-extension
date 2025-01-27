@@ -11,7 +11,7 @@ In order to use this extension, you must have a Cyberbro instance running (e.g. 
 > [!TIP]
 > Find info on how to install this extension on the [Cyberbro Wiki page](https://github.com/stanfrbd/cyberbro/wiki/7.-Cyberbro-browser-extension)
 
-![image](https://github.com/user-attachments/assets/34daa760-3f97-4cf4-8941-deaa2c16ade0)
+![image](https://github.com/user-attachments/assets/48ce7ec6-63ee-487b-ae6c-0347f5fbca06)
 
 ## License
 
