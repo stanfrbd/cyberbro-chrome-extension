@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    // Your existing code here
     function selectAllEngines() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => checkbox.checked = true);
         }
