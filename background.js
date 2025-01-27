@@ -16,7 +16,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
 
         // Retrieve settings (Cyberbro URL, API prefix, and selected engines)
         chrome.storage.sync.get(["cyberbroUrl", "apiPrefix", "selectedEngines"], async (data) => {
-            const cyberbroUrl = data.cyberbroUrl || "https://127.0.0.1:5000";
+            const cyberbroUrl = data.cyberbroUrl || "http://127.0.0.1:5000";
             const apiPrefix = data.apiPrefix || "/api";
             const engines = data.selectedEngines || [];
             console.log("Cyberbro URL:", cyberbroUrl);
