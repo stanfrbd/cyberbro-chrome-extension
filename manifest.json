@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Cyberbro Analyzer",
-    "version": "1.2",
+    "version": "1.3",
     "description": "This extension enables you to analyze data from the selected text by right-clicking and choosing 'Analyze with Cyberbro'.",
     "permissions": ["contextMenus", "storage", "activeTab", "scripting"],
     "background": {
