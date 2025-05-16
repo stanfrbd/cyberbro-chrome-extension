@@ -33,7 +33,7 @@ chrome.contextMenus.onClicked.addListener(async (info) => {
                 console.log("Sending selected text for analysis");
                 const response = await fetch(`${cyberbroUrl}${apiPrefix}/analyze`, {
                     method: "POST",
-                    headers: { 
+                    headers: {
                         "Content-Type": "application/json",
                         "Access-Control-Allow-Origin": "*" // Added CORS header
                     },

@@ -35,47 +35,47 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
     function selectAllEngines() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => checkbox.checked = true);
-        }
+    }
 
-        function selectAbuseChecker() {
+    function selectAbuseChecker() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = checkbox.dataset.supports.includes('abuse');
         });
-        }
+    }
 
-        function selectHash() {
+    function selectHash() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = checkbox.dataset.supports.includes('hash');
         });
-        }
+    }
 
-        function selectVpn() {
+    function selectVpn() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = checkbox.dataset.supports.includes('vpn');
         });
-        }
+    }
 
-        function selectDefault() {
+    function selectDefault() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = checkbox.dataset.supports.includes('default');
         });
-        }
+    }
 
-        function selectFree() {
+    function selectFree() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = checkbox.dataset.supports.includes('free');
         });
-        }
+    }
 
-        function selectExtension() {
+    function selectExtension() {
         document.querySelectorAll('#engine-options input[type="checkbox"]').forEach(checkbox => {
             checkbox.checked = checkbox.dataset.supports.includes('extension');
         });
-        }
+    }
 
 
     document.querySelector('label[for="selectAll"]').addEventListener('click', selectAllEngines);
