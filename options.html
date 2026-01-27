@@ -3,6 +3,11 @@
 
 <head>
     <style>
+        body,
+        html {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
         .radio-container {
             background: #fff;
             border-radius: 5px;
@@ -141,6 +146,12 @@
                         title="Checks Alienvault for IP, domain, URL, hash, free API key required">Alienvault</label>
                 </div>
                 <div>
+                    <input type="checkbox" id="bad_asn" value="bad_asn" data-supports="ip risk free_no_key">
+                    <label for="bad_asn"
+                        title="Checks if IP's ASN is listed in Spamhaus ASNDROP, Brianhama Bad ASN databases, or LETHAL-FORENSICS ASN Blacklist. Requires ipapi, ipinfo, or ipquery engine. Free, no API key">Bad
+                        ASN Check</label>
+                </div>
+                <div>
                     <input type="checkbox" id="criminalip" value="criminalip" data-supports="ip">
                     <label for="criminalip"
                         title="Criminal IP is an OSINT search engine specialized in attack surface assessment and threat hunting, free, with paid upgrades available">Criminal
@@ -155,8 +166,12 @@
                     <input type="checkbox" id="crtsh" value="crtsh" data-supports="domain url free_no_key">
                     <label for="crtsh" title="Checks crt.sh for domain, URL, free, no API key">crt.sh</label>
                 </div>
-                <div>
-                    <input type="checkbox" id="github" value="github"
+                <div> <input type="checkbox" id="dfir_iris" value="dfir_iris"
+                        data-supports="domain url ip hash extension">
+                    <label for="dfir_iris"
+                        title="Searches DFIR-IRIS results for all types of observable, API key required">DFIR-IRIS</label>
+                </div>
+                <div> <input type="checkbox" id="github" value="github"
                         data-supports="domain url ip hash extension free_no_key scraping">
                     <label for="github"
                         title="Get Github grep.app API search results for all types of observable, free, no API key">Github</label>
@@ -201,13 +216,18 @@
                         (PDF)</label>
                 </div>
                 <div>
+                    <input type="checkbox" id="ipapi" value="ipapi"
+                        data-supports="default ip vpn proxy risk free_no_key" checked>
+                    <label for="ipapi"
+                        title="Checks IPapi for IP, reversed obtained IP for a given domain / URL, free, no API key">IPapi</label>
+                </div>
+                <div>
                     <input type="checkbox" id="ipinfo" value="ipinfo" data-supports="ip">
                     <label for="ipinfo"
                         title="Checks IPinfo for IP, reversed obtained IP for a given domain / URL, free API key required">IPinfo</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="ipquery" value="ipquery"
-                        data-supports="default ip risk vpn proxy free_no_key" checked>
+                    <input type="checkbox" id="ipquery" value="ipquery" data-supports="ip risk vpn proxy free_no_key">
                     <label for="ipquery"
                         title="Checks IPquery for IP, reversed obtained IP for a given domain / URL, free, no API key">IPquery</label>
                 </div>
@@ -242,6 +262,17 @@
                         data-supports="default domain ip abuse free_no_key" checked>
                     <label for="reverse_dns"
                         title="Performs a reverse DNS lookup for IP, domain, URL (on your machine)">Reverse DNS</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="reversing_labs" value="reversing_labs"
+                        data-supports="domain url ip hash extension">
+                    <label for="reversing_labs"
+                        title="Searches Reversing Labs Spectra Analyze results for all types of observable, API key required">ReversingLabs</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="rosti" value="rosti" data-supports="domain url ip email hash">
+                    <label for="rosti"
+                        title="Searches Rösti IOC data for domains, URLs, IPs, emails, and hashes (MD5, SHA1, SHA256), API key required">Rösti</label>
                 </div>
                 <div>
                     <input type="checkbox" id="shodan" value="shodan" data-supports="ports ip">
