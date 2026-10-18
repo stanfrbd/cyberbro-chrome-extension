@@ -252,9 +252,9 @@
                     <label for="phishtank" title="Checks Phishtank for domains, URL, free, no API key">Phishtank</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="rdap" value="rdap" data-supports="default abuse domain free_no_key"
+                    <input type="checkbox" id="rdap_whois" value="rdap_whois" data-supports="default abuse domain free_no_key"
                         checked>
-                    <label for="rdap" title="Checks RDAP (ex Whois) record for domain, URL, no API key required">RDAP
+                    <label for="rdap_whois" title="Checks RDAP (ex Whois) record for domain, URL, no API key required">RDAP
                         (ex Whois)</label>
                 </div>
                 <div>
@@ -264,9 +264,9 @@
                         title="Performs a reverse DNS lookup for IP, domain, URL (on your machine)">Reverse DNS</label>
                 </div>
                 <div>
-                    <input type="checkbox" id="reversing_labs" value="reversing_labs"
+                    <input type="checkbox" id="rl_analyze" value="rl_analyze"
                         data-supports="domain url ip hash extension">
-                    <label for="reversing_labs"
+                    <label for="rl_analyze"
                         title="Searches Reversing Labs Spectra Analyze results for all types of observable, API key required">ReversingLabs</label>
                 </div>
                 <div>
@@ -303,6 +303,26 @@
                     <input type="checkbox" id="webscout" value="webscout" data-supports="ip vpn proxy risk">
                     <label for="webscout"
                         title="Checks WebScout for IP, reversed obtained IP for a given domain / URL, free or paid API key required">WebScout</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="ms_tenant_check" value="ms_tenant_check" data-supports="domain email free_no_key">
+                    <label for="ms_tenant_check" title="Checks whether a domain or email is associated with a Microsoft Entra ID tenant; no API key">Microsoft Tenant Check</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="scanmalware" value="scanmalware" data-supports="domain url ip free_no_key">
+                    <label for="scanmalware" title="Checks the ScanMalware archive for directly scanned IP addresses, domains, and URLs; no API key">ScanMalware</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="hister" value="hister" data-supports="domain url ip email extension hash">
+                    <label for="hister" title="Searches a configured self-hosted Hister index; API key and base URL required">Hister</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="misp_feedback" value="misp_feedback" data-supports="hash ip domain free_no_key">
+                    <label for="misp_feedback" title="Checks MISP Feedback warninglists for potential false positives">MISP Feedback</label>
+                </div>
+                <div>
+                    <input type="checkbox" id="ransomware_live" value="ransomware_live" data-supports="domain url">
+                    <label for="ransomware_live" title="Checks ransomware victim data through the Ransomware.Live Pro API; paid API key required">Ransomware.Live</label>
                 </div>
         </fieldset>
         <button type="submit">Save</button>
