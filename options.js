@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (data.selectedEngines) {
             data.selectedEngines.forEach((engine) => {
-                const checkbox = document.getElementById(engine);
+                // Preserve the existing selection when upgrading from Hister to Nogon.
+                const checkbox = document.getElementById(engine === "hister" ? "nogon" : engine);
                 if (checkbox) checkbox.checked = true;
             });
         }
